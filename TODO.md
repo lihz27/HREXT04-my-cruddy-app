@@ -1,1 +1,4 @@
-
+- [] store items
+- [] create new item
+- [] edit item
+- [] delete item
