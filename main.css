@@ -1,0 +1,168 @@
+button.btn-default1:active, button.btn-default1:focus, button.btn-default1:target, button.btn-default1:active:focus {
+    color: #FFF;
+    outline: none;
+    box-shadow: none;
+    background-color: red;
+    border-color: #FF9900;
+}
+
+button.btn-default2:active, button.btn-default2:focus, button.btn-default2:target, button.btn-default2:active:focus {
+    color: #FFF;
+    outline: none;
+    box-shadow: none;
+    background-color: orange;
+    border-color: #FF9900;
+}
+
+button.btn-default3:active, button.btn-default3:focus, button.btn-default3:target, button.btn-default3:active:focus {
+    color: #FFF;
+    outline: none;
+    box-shadow: none;
+    background-color: black;
+    border-color: #FF9900;
+}
+
+button.btn-default4:active, button.btn-default4:focus, button.btn-default4:target, button.btn-default4:active:focus {
+    color: #FFF;
+    outline: none;
+    box-shadow: none;
+    background-color: green;
+    border-color: #FF9900;
+}
+
+button.btn-default5:active, button.btn-default5:focus, button.btn-default5:target, button.btn-default5:active:focus {
+    color: #FFF;
+    outline: none;
+    box-shadow: none;
+    background-color: deepskyblue;
+    border-color: #FF9900;
+}
+
+button.btn-default6:active, button.btn-default6:focus, button.btn-default6:target, button.btn-default6:active:focus {
+    color: #FFF;
+    outline: none;
+    box-shadow: none;
+    background-color: purple;
+    border-color: #FF9900;
+}
+button.btn-default7:active, button.btn-default7:focus, button.btn-default7:target, button.btn-default7:active:focus {
+    color: #FFF;
+    outline: none;
+    box-shadow: none;
+    background-color: pink;
+    border-color: #FF9900;
+}
+.form-group-week-btn {
+
+}
+.top-header {
+    text-align: center;
+}
+.col-sm-6{
+    margin-top:10px;
+}
+.todo-list > li {
+	padding: 10px;
+	border: 1px solid #ddd;
+	list-style-type:none;
+
+}
+
+.user-input-add-Todo {
+	width: 500px;
+	height: 30px;
+	border: 1px solid #ddd;
+	margin-top: 20px;
+}
+
+li.completed {
+	text-decoration: line-through;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.toggle{
+
+	cursor:pointer;
+}
+
+.todo-list li .edit {
+	display: none;
+}
+
+.todo-list li.editing .edit {
+	display: block;
+	width: 506px;
+	margin: 0 0 0 23px;
+}
+.todo-list li.editing .view {
+	display: none;
+}
+
+
+.filters {
+    margin-top: 50px;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+.filters li {
+    display: inline;
+}
+
+.filters li a {
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;T
+    border-radius: 3px;
+}
+
+.filters li a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+}
+
+.filters li a.selected {
+    border-color: rgba(175, 47, 47, 0.2);
+}
+.form-group {
+
+}
+
+.user-input-add-Todo {
+    margin: 15px;
+}
+.user-search-bar {
+    width: 300px;
+}
+.nav-tabs{
+    font-color:black;
+}
+
+.nav-tabs > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.nav-tabs > li.active > a:focus, .nav-tabs > li.active > a
+{
+    margin-top: 1px;
+}
+.nav-tabs > li {
+    margin-bottom: 0px;
+}
+.nav-tabs > li.active {
+    margin-bottom: -1px;
+}
+
+.secondary-ui {
+    padding:5px;
+}
+
+

@@ -1,22 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
- <head>
-   <meta charset="UTF-8">
-   <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
-    </script>
-    <script src="app.js"></script>
-    <link rel="stylesheet" href="app.css">
-    <title>MY  FIRST CRUD App</title>
- </head>
- <body>
-  <input type="text" class="user-input-title" placeholder="Enter the Title">
-  <input type="text" class="user-input">
-  <textarea class="user-input-body"></textarea>
-    <button class="add-text-btn">add text</button>
-    <button class="del-text-btn">delete text</button>
-    <div class="display"></div>
- </body>
+<!doctype html>
+<html data-framework="vue">
+
+	<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+    </head>
+
+
+	<body>
+
+
+
+    <div class="container" id="vue-app">
+       <div class="top-header">
+           <div class="row">
+               <div class="col-sm-12">
+                   <h1><strong>My Todos</strong></h1>
+                   <h2>{{today.day}} {{today.date}}</h2>
+               </div>
+           </div>
+       </div>
+       <div class="ui-primary-menu">
+           <div class="row">
+               <div class="col-sm-5">
+
+                   <ul class="nav nav-tabs">
+                       <li><a href="#">Home</a></li>
+                       <li><a href="#">Work</a></li>
+                       <li><a href="#/all" :class="{selected: visibility == 'all'}">All</a></li>
+                       <li><a href="#/active" :class="{selected: visibility == 'active'}">Pending</a></li>
+                       <li><a href="#/completed" :class="{selected: visibility == 'completed'}">Completed</a></li>
+                   </ul>
+
+               </div>
+               <div class="col-sm-6">
+                   <input type="text" class="user-search-bar" placeholder="Search todos">
+                   <button type="submit"><i class="fa fa-search"></i></button>
+               </div>
+           </div>
+       </div>
+
+    <div class="secondary-ui">
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-default1 btn-sm">Mon</button>
+                <button class="btn btn-default2 btn-sm">Tue</button>
+                <button class="btn btn-default3 btn-sm">Wed</button>
+                <button class="btn btn-default4 btn-sm">Thu</button>
+                <button class="btn btn-default5 btn-sm">Fri</button>
+                <button class="btn btn-default6 btn-sm">Sat</button>
+                <button class="btn btn-default7 btn-sm">Sun</button>
+                <input
+                        type="text"
+                        v-model="newTodo.title"
+                        class="user-input-add-Todo"
+                        placeholder="Add a new Todo"
+                        @keyup.enter="addNewTodo(newTodo)">
+                <button class="btn btn-success btn-sm" @click="addNewTodo(newTodo)">Add Todo</button>
+            </div>
+        </div>
+    </div>
+
+          <div class="row">
+              <template id='todo-list-template'>
+                  <section class="main" v-if="todos.length">
+
+                      <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone">
+                      <label for="toggle-all">Mark all as complete</label>
+                      <ul class="todo-list" v-if="todos.length > 0">
+                          <li class="todo"
+                              v-bind:class="{ 'completed': todo.completed, editing: todo == editedTodo }"
+                              v-for="todo in filteredTodos">
+                              <div class="view">
+                                  <input class="toggle" type="checkbox" v-model="todo.completed">
+                                  <label @dblclick="editTodo(todo)">{{todo.title}}</label>
+                                  <button class="btn btn-danger btn-xs pull-right" @click="deleteTodo(todo)">
+                                      <i class="fa fa-trash"></i>
+                                  </button>
+                                  <button class="btn btn-info btn-xs pull-right margin-right-10" @click="editTodo(todo)">edit</button>
+                                  <button class="btn btn-xs pull-right margin-right-10"
+                                          v-bind:class="{'btn-success' : todo.completed, 'btn-warning' : !todo.completed}"
+                                          @click="todoCompleted(todo)"> {{todo.completed ? 'Completed' : 'Pending'}}
+                                  </button>
+                              </div>
+                              <input class="edit" type="text"
+                                     v-model="todo.title"
+                                     v-todo-focus="todo == editedTodo"
+                                     @blur="doneEdit(todo)"
+                                     @keyup.enter="doneEdit(todo)"
+                                     @keyup.esc="cancelEdit(todo)">
+                          </li>
+                      </ul>
+                  </section>
+              </template>
+          </div>
+
+            <div v-if="completed.length > 0 && showComplete">
+                <p class="status">Completed task: {{ completedPercentage }}</p>
+                <span class="todo-count">
+					You have <strong v-text="remaining"></strong> {{pluralize('pending todo', remaining)}}
+				</span>
+                <pie-chart></pie-chart>
+
+            </div>
+        <div class="control-buttons">
+            <div class="btn btn-primary btn-sm" v-if="completed.length > 0" @click="toggleShowComplete"><span v-if="!showComplete">Show</span><span v-else>Hide</span> Progress </div>
+            <button class="btn btn-danger btn-sm" @click="removeCompleted" v-show="todos.length > remaining">
+                Clear completed
+            </button
+        </div>
+      </div>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+  <script src="router/director.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/routes.js"></script>
+  </body>
+
+
+
 </html>
