@@ -178,7 +178,18 @@
 			}, {responsive: true, maintainAspectRatio: false})
 		},
 	});
-
+Vue.component('search-bar', {
+	computed: {
+		template: '#generic-picker',
+		props:['todos', 'query'],
+		filteredItems: function () {
+			var query = this.query;
+			return this.todos.filter(function(todo) {
+				return  todo.toLowerCase().indexOf(query.toLowerCase()) !== -1
+			})
+		}
+	}
+})
 
 })(window);
 
